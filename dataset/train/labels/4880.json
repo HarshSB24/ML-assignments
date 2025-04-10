@@ -1,0 +1,42 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Cetzine",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Dolonex dt",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Ciplox 500",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Zole f cream",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Clavum 625",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Grilinctus bm",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        }
+    ]
+}

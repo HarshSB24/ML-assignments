@@ -1,0 +1,42 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Zole f cream",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Cap Dilantin",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Althrocin 500",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Febrex plus",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Dolo 650",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Grilinctus bm",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        }
+    ]
+}

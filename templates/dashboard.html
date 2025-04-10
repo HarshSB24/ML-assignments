@@ -1,0 +1,343 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Medicine Reminder{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h2>Welcome, {{ current_user.username }}!</h2>
+        <p class="lead">Your medication reminder dashboard</p>
+    </div>
+    <div class="col-md-4 text-md-end">
+        <a href="{{ url_for('add_reminder') }}" class="btn btn-primary">
+            <i class="fas fa-plus-circle me-2"></i>Add Reminder
+        </a>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card shadow h-100">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Scan Prescription</h4>
+            </div>
+            <div class="card-body">
+                <p>Upload a prescription image to automatically create reminders.</p>
+                <form id="upload-form" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Upload Prescription Image</label>
+                        <input class="form-control" type="file" id="file" name="file" accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex">
+                            <button type="submit" class="btn btn-primary me-2">
+                                <i class="fas fa-upload me-2"></i>Upload
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="captureImage()">
+                                <i class="fas fa-camera me-2"></i>Capture
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div id="upload-status" class="mt-3 d-none">
+                    <div class="spinner-border text-primary me-2" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <span>Processing prescription...</span>
+                </div>
+                <div id="upload-result" class="mt-3 d-none">
+                    <div class="alert alert-success">
+                        <p class="mb-0">Prescription processed successfully!</p>
+                        <p id="reminders-scheduled" class="mb-0"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card shadow h-100">
+            <div class="card-header bg-danger text-white">
+                <h4 class="mb-0">Active Reminders</h4>
+            </div>
+            <div class="card-body">
+                <div id="active-reminders-container">
+                    {% if active_reminders %}
+                        {% for reminder in active_reminders %}
+                            <div class="alert alert-danger reminder-alert" data-reminder-id="{{ reminder.id }}">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="mb-0">{{ reminder.medicine }}</h5>
+                                        <p class="mb-0">{{ reminder.dosage }} - {{ reminder.method }}</p>
+                                        <small>{{ reminder.reminder_time|format_datetime }}</small>
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-success btn-sm mark-taken-btn" data-reminder-id="{{ reminder.id }}">
+                                            <i class="fas fa-check me-1"></i>Taken
+                                        </button>
+                                    </div>
+                                </div>
+                                {% if reminder.audio_file %}
+                                <div class="mt-2">
+                                    <audio controls autoplay>
+                                        <source src="{{ url_for('serve_audio', filename=reminder.audio_file) }}" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No active reminders at the moment.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">Upcoming Reminders</h4>
+            </div>
+            <div class="card-body">
+                {% if upcoming_reminders %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Medicine</th>
+                                    <th>Dosage</th>
+                                    <th>Method</th>
+                                    <th>Time</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for reminder in upcoming_reminders %}
+                                    <tr>
+                                        <td>{{ reminder.medicine }}</td>
+                                        <td>{{ reminder.dosage }}</td>
+                                        <td>{{ reminder.method }}</td>
+                                        <td>{{ reminder.reminder_time|format_datetime }}</td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm delete-reminder-btn" data-reminder-id="{{ reminder.id }}">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p>No upcoming reminders. <a href="{{ url_for('add_reminder') }}">Add a reminder</a> or upload a prescription.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Check for active reminders every 15 seconds
+    setInterval(function() {
+        checkActiveReminders();
+    }, 15000);
+
+    function checkActiveReminders() {
+        fetch('{{ url_for("check_active_reminders") }}')
+            .then(response => response.json())
+            .then(data => {
+                const activeReminders = data.active_reminders;
+                if (activeReminders && activeReminders.length > 0) {
+                    // Add any new active reminders to the UI
+                    activeReminders.forEach(reminder => {
+                        // Check if this reminder is already shown
+                        if (!document.querySelector(`.reminder-alert[data-reminder-id="${reminder.id}"]`)) {
+                            const reminderHtml = `
+                                <div class="alert alert-danger reminder-alert" data-reminder-id="${reminder.id}">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h5 class="mb-0">${reminder.medicine}</h5>
+                                            <p class="mb-0">${reminder.dosage} - ${reminder.method}</p>
+                                            <small>${reminder.time}</small>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-success btn-sm mark-taken-btn" data-reminder-id="${reminder.id}">
+                                                <i class="fas fa-check me-1"></i>Taken
+                                            </button>
+                                        </div>
+                                    </div>
+                                    ${reminder.audio_file ? `
+                                    <div class="mt-2">
+                                        <audio controls autoplay>
+                                            <source src="{{ url_for('serve_audio', filename='') }}${reminder.audio_file}" type="audio/mpeg">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                    </div>
+                                    ` : ''}
+                                </div>
+                            `;
+                            
+                            // Add to the active reminders container
+                            const container = document.getElementById('active-reminders-container');
+                            if (container.querySelector('p')) {
+                                // Remove the "No active reminders" message if present
+                                container.innerHTML = '';
+                            }
+                            container.insertAdjacentHTML('afterbegin', reminderHtml);
+                            
+                            // Add event listener to the new button
+                            const newButton = container.querySelector(`.mark-taken-btn[data-reminder-id="${reminder.id}"]`);
+                            if (newButton) {
+                                newButton.addEventListener('click', function() {
+                                    markReminderTaken(reminder.id);
+                                });
+                            }
+                        }
+                    });
+                }
+            })
+            .catch(error => console.error('Error checking active reminders:', error));
+    }
+
+    // Handle mark as taken
+    document.querySelectorAll('.mark-taken-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const reminderId = this.dataset.reminderId;
+            markReminderTaken(reminderId);
+        });
+    });
+
+    function markReminderTaken(reminderId) {
+        fetch(`{{ url_for('mark_reminder_taken', reminder_id='') }}${reminderId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remove the reminder alert from the UI
+                const reminderAlert = document.querySelector(`.reminder-alert[data-reminder-id="${reminderId}"]`);
+                if (reminderAlert) {
+                    reminderAlert.remove();
+                }
+                
+                // If no more active reminders, show message
+                const container = document.getElementById('active-reminders-container');
+                if (!container.querySelector('.reminder-alert')) {
+                    container.innerHTML = '<p>No active reminders at the moment.</p>';
+                }
+            }
+        })
+        .catch(error => console.error('Error marking reminder as taken:', error));
+    }
+
+    // Handle delete reminder
+    document.querySelectorAll('.delete-reminder-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            if (confirm('Are you sure you want to delete this reminder?')) {
+                const reminderId = this.dataset.reminderId;
+                deleteReminder(reminderId, this.closest('tr'));
+            }
+        });
+    });
+
+    function deleteReminder(reminderId, rowElement) {
+        fetch(`{{ url_for('delete_reminder', reminder_id='') }}${reminderId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && rowElement) {
+                rowElement.remove();
+                
+                // If no more rows, show message
+                const tbody = document.querySelector('table tbody');
+                if (tbody && !tbody.querySelector('tr')) {
+                    const tableContainer = document.querySelector('.table-responsive');
+                    tableContainer.innerHTML = '<p>No upcoming reminders. <a href="{{ url_for("add_reminder") }}">Add a reminder</a> or upload a prescription.</p>';
+                }
+            }
+        })
+        .catch(error => console.error('Error deleting reminder:', error));
+    }
+
+    // Handle prescription upload
+    document.getElementById('upload-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        
+        // Show upload status
+        document.getElementById('upload-status').classList.remove('d-none');
+        document.getElementById('upload-result').classList.add('d-none');
+        
+        fetch('{{ url_for("predict") }}', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Hide upload status
+            document.getElementById('upload-status').classList.add('d-none');
+            
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
+            
+            // Show success message
+            document.getElementById('upload-result').classList.remove('d-none');
+            document.getElementById('reminders-scheduled').textContent = 
+                `${data.reminders_scheduled} reminders scheduled. View in prescription history.`;
+            
+            // Reset form
+            this.reset();
+            
+            // Refresh page after 3 seconds to show new reminders
+            setTimeout(function() {
+                location.reload();
+            }, 3000);
+        })
+        .catch(error => {
+            document.getElementById('upload-status').classList.add('d-none');
+            console.error('Error uploading prescription:', error);
+            alert('Error uploading prescription. Please try again.');
+        });
+    });
+
+    // Camera capture function
+    function captureImage() {
+        // Create temporary file input that accepts camera
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.capture = 'environment';
+        
+        input.onchange = function() {
+            if (input.files && input.files[0]) {
+                // Put captured image into the regular file input
+                const fileInput = document.getElementById('file');
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(input.files[0]);
+                fileInput.files = dataTransfer.files;
+                
+                // Submit the form automatically
+                document.getElementById('upload-form').dispatchEvent(new Event('submit'));
+            }
+        };
+        
+        input.click();
+    }
+</script>
+{% endblock %}

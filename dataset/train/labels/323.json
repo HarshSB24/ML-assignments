@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Cap Omez",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Combiflam",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Allegra",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Triz",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Neurobin Forte",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Brozedex",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

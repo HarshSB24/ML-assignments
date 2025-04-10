@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block title %}Prescription Details - Medicine Reminder{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2>Prescription Details</h2>
+        <p class="lead">Uploaded on {{ prescription.upload_date|format_datetime }}</p>
+    </div>
+    <div class="col-auto">
+        <a href="{{ url_for('prescription_history') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-2"></i>Back to History
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Prescription Image</h4>
+            </div>
+            <div class="card-body text-center">
+                {% if prescription.filename %}
+                    <img src="{{ url_for('static', filename='uploads/' + prescription.filename) }}" 
+                         alt="Prescription" class="img-fluid rounded">
+                {% else %}
+                    <div class="alert alert-info">
+                        <p class="mb-0">No image available for this prescription.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">Extracted Text</h4>
+            </div>
+            <div class="card-body">
+                {% if prescription.extracted_text %}
+                    <pre class="mb-0" style="white-space: pre-wrap;">{{ prescription.extracted_text }}</pre>
+                {% else %}
+                    <div class="alert alert-info">
+                        <p class="mb-0">No text was extracted from this prescription.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-7">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Associated Reminders</h4>
+            </div>
+            <div class="card-body">
+                {% if reminders %}
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Medicine</th>
+                                    <th>Dosage</th>
+                                    <th>Frequency</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for reminder in reminders %}
+                                    <tr>
+                                        <td>{{ reminder.medicine }}</td>
+                                        <td>{{ reminder.dosage }}</td>
+                                        <td>{{ reminder.frequency }}</td>
+                                        <td>{{ reminder.reminder_time|format_datetime }}</td>
+                                        <td>
+                                            {% if reminder.status == 'upcoming' %}
+                                                <span class="badge bg-primary">Upcoming</span>
+                                            {% elif reminder.status == 'active' %}
+                                                <span class="badge bg-danger">Active</span>
+                                            {% elif reminder.status == 'taken' %}
+                                                <span class="badge bg-success">Taken</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if reminder.status in ['upcoming', 'active'] %}
+                                                <button class="btn btn-danger btn-sm delete-reminder-btn" 
+                                                        data-reminder-id="{{ reminder.id }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            {% else %}
+                                                <span class="text-muted">N/A</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="alert alert-info">
+                        <p class="mb-0">No reminders are associated with this prescription.</p>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="card-footer">
+                <a href="{{ url_for('add_reminder', prescription_id=prescription.id) }}" class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i>Add New Reminder
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteConfirmModalLabel">Confirm Deletion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this reminder? This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete Reminder</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Handle delete reminder
+    document.querySelectorAll('.delete-reminder-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            if (confirm('Are you sure you want to delete this reminder?')) {
+                const reminderId = this.dataset.reminderId;
+                deleteReminder(reminderId, this.closest('tr'));
+            }
+        });
+    });
+
+    function deleteReminder(reminderId, rowElement) {
+        fetch(`{{ url_for('delete_reminder', reminder_id='') }}${reminderId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && rowElement) {
+                rowElement.remove();
+                
+                // If no more rows, show message
+                const tbody = document.querySelector('table tbody');
+                if (tbody && !tbody.querySelector('tr')) {
+                    const tableContainer = document.querySelector('.table-responsive');
+                    tableContainer.innerHTML = `
+                        <div class="alert alert-info">
+                            <p class="mb-0">No reminders are associated with this prescription.</p>
+                        </div>
+                    `;
+                }
+                
+                // Show success toast
+                showToast('Reminder deleted successfully!', 'success');
+            } else {
+                // Show error toast
+                showToast('Error deleting reminder. Please try again.', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showToast('Error deleting reminder. Please try again.', 'error');
+        });
+    }
+    
+    function showToast(message, type = 'info') {
+        const toastContainer = document.getElementById('toast-container');
+        if (!toastContainer) {
+            const container = document.createElement('div');
+            container.id = 'toast-container';
+            container.className = 'position-fixed bottom-0 end-0 p-3';
+            document.body.appendChild(container);
+        }
+        
+        const toastId = 'toast-' + Date.now();
+        const toastHTML = `
+            <div id="${toastId}" class="toast align-items-center text-white bg-${type === 'success' ? 'success' : type === 'error' ? 'danger' : 'info'}" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        `;
+        
+        document.getElementById('toast-container').insertAdjacentHTML('beforeend', toastHTML);
+        const toastElement = document.getElementById(toastId);
+        const toast = new bootstrap.Toast(toastElement, {
+            autohide: true,
+            delay: 3000
+        });
+        toast.show();
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,54 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Dolo 650",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Cap Omez",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Cap Co-Immune",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Cap Cypon",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Cap Zovirax",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Evion",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Brozedex",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Syrup Zedex",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        }
+    ]
+}

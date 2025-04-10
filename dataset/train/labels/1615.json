@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Zole f cream",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Dolo 650",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Cap Omez",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Corex-dx",
+            "dosage": "10ml",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        }
+    ]
+}

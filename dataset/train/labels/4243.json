@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Althrocin 500",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Zole f cream",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup TusQ-dx",
+            "dosage": "5ml",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        }
+    ]
+}

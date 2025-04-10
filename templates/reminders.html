@@ -1,0 +1,423 @@
+{% extends "base.html" %}
+
+{% block title %}Reminders - Medicine Reminder{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h2>Scheduled Reminders</h2>
+        <p class="lead">Manage all your medication reminders</p>
+    </div>
+    <div class="col-md-4 text-md-end">
+        <a href="{{ url_for('add_reminder') }}" class="btn btn-primary">
+            <i class="fas fa-plus-circle me-2"></i>Add Reminder
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">All Reminders</h4>
+            </div>
+            <div class="card-body">
+                {% if reminders %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Medicine</th>
+                                <th>Dosage</th>
+                                <th>Method</th>
+                                <th>Frequency</th>
+                                <th>Duration</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for reminder in reminders %}
+                            <tr id="reminder-row-{{ reminder.id }}">
+                                <td>{{ reminder.medicine }}</td>
+                                <td>{{ reminder.dosage }}</td>
+                                <td>{{ reminder.method }}</td>
+                                <td>{{ reminder.frequency if reminder.frequency else "1 time a day" }}</td>
+                                <td>{{ reminder.duration if reminder.duration else "1 day" }}</td>
+                                <td class="reminder-time-cell">{{ reminder.time }}</td>
+                                <td>
+                                    {% if reminder.status == 'active' %}
+                                    <span class="badge bg-success">Active</span>
+                                    {% elif reminder.status == 'completed' %}
+                                    <span class="badge bg-secondary">Completed</span>
+                                    {% else %}
+                                    <span class="badge bg-info">Upcoming</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <button class="btn btn-warning btn-sm edit-reminder-btn" data-reminder-id="{{ reminder.id }}">
+                                            <i class="fas fa-edit me-1"></i>Edit
+                                        </button>
+                                        <button class="btn btn-info btn-sm play-audio-btn" data-audio="{{ reminder.audio_file }}">
+                                            <i class="fas fa-play me-1"></i>Play
+                                        </button>
+                                        <button class="btn btn-danger btn-sm delete-reminder-btn" data-reminder-id="{{ reminder.id }}">
+                                            <i class="fas fa-trash me-1"></i>Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>No reminders scheduled yet. <a href="{{ url_for('add_reminder') }}">Add a reminder</a> or upload a prescription.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Reminder Modal -->
+<div class="modal fade" id="editReminderModal" tabindex="-1" aria-labelledby="editReminderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title" id="editReminderModalLabel">Edit Reminder</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editReminderForm">
+                    <input type="hidden" id="edit_reminder_id" name="reminder_id">
+                    
+                    <div class="mb-3">
+                        <label for="edit_medicine_name" class="form-label">Medicine Name:</label>
+                        <input type="text" class="form-control" id="edit_medicine_name" name="medicine_name" readonly>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="edit_reminder_time" class="form-label">Reminder Time:</label>
+                        <input type="datetime-local" class="form-control" id="edit_reminder_time" name="reminder_time" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="edit_frequency" class="form-label">Frequency:</label>
+                        <select class="form-select" id="edit_frequency" name="frequency">
+                            <option value="once">Once</option>
+                            <option value="daily">Daily</option>
+                            <option value="twice_daily">Twice Daily</option>
+                            <option value="thrice_daily">Thrice Daily</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="edit_duration" class="form-label">Duration (days):</label>
+                        <input type="number" class="form-control" id="edit_duration" name="duration" min="1" value="1" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-warning" id="saveReminderChanges">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Add Custom Reminder</h4>
+            </div>
+            <div class="card-body">
+                <form id="customReminderForm" method="POST" action="{{ url_for('add_reminder') }}">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="medicine_name" class="form-label">Medicine Name:</label>
+                            <input type="text" class="form-control" id="medicine_name" name="medicine_name" required>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="dosage" class="form-label">Dosage:</label>
+                            <input type="text" class="form-control" id="dosage" name="dosage" placeholder="e.g., 1 tablet" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="method" class="form-label">Method:</label>
+                            <select class="form-select" id="method" name="method">
+                                <option value="After Food">After Food</option>
+                                <option value="Before Food">Before Food</option>
+                                <option value="With Water">With Water</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="reminder_time" class="form-label">Reminder Time:</label>
+                            <input type="datetime-local" class="form-control" id="reminder_time" name="reminder_time" required>
+                        </div>
+                        
+                        <div class="col-md-4 mb-3">
+                            <label for="frequency" class="form-label">Frequency:</label>
+                            <select class="form-select" id="frequency" name="frequency">
+                                <option value="once">Once</option>
+                                <option value="daily">Daily</option>
+                                <option value="twice_daily">Twice Daily</option>
+                                <option value="thrice_daily">Thrice Daily</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="duration" class="form-label">Duration (days):</label>
+                            <input type="number" class="form-control" id="duration" name="duration" min="1" value="1" required>
+                        </div>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-plus-circle me-2"></i>Add Reminder
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Initialize modal
+    let editModal;
+    
+    // Set default reminder time to current time
+    document.addEventListener('DOMContentLoaded', function() {
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('reminder_time').value = now.toISOString().slice(0, 16);
+        
+        // Initialize Bootstrap modal
+        editModal = new bootstrap.Modal(document.getElementById('editReminderModal'));
+        
+        // Add event listeners for buttons
+        document.querySelectorAll('.play-audio-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                playReminder(this.dataset.audio);
+            });
+        });
+        
+        document.querySelectorAll('.delete-reminder-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                if (confirm('Are you sure you want to delete this reminder?')) {
+                    const reminderId = this.dataset.reminderId;
+                    deleteReminder(reminderId, this.closest('tr'));
+                }
+            });
+        });
+        
+        document.querySelectorAll('.edit-reminder-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const reminderId = this.dataset.reminderId;
+                openEditModal(reminderId);
+            });
+        });
+        
+        // Save changes button
+        document.getElementById('saveReminderChanges').addEventListener('click', function() {
+            saveReminderChanges();
+        });
+    });
+
+    function playReminder(audioFile) {
+        if (!audioFile) {
+            alert('No audio file available for this reminder.');
+            return;
+        }
+        
+        const audio = new Audio('{{ url_for("serve_audio", filename="") }}' + audioFile);
+        audio.play().catch(error => {
+            console.error('Error playing audio:', error);
+            alert('Error playing audio. The file may not exist or your browser blocked autoplay.');
+        });
+    }
+
+    function deleteReminder(reminderId, rowElement) {
+        fetch('{{ url_for("delete_reminder", reminder_id="") }}' + reminderId, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && rowElement) {
+                rowElement.remove();
+                
+                // If no more rows, show message
+                const tbody = document.querySelector('table tbody');
+                if (tbody && !tbody.querySelector('tr')) {
+                    const tableContainer = document.querySelector('.table-responsive');
+                    tableContainer.innerHTML = '<p>No reminders scheduled yet. <a href="{{ url_for("add_reminder") }}">Add a reminder</a> or upload a prescription.</p>';
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting reminder:', error);
+            alert('An error occurred while deleting the reminder.');
+        });
+    }
+    
+    function openEditModal(reminderId) {
+        // Find the reminder row
+        const row = document.getElementById(`reminder-row-${reminderId}`);
+        if (!row) return;
+        
+        // Get reminder data from the row
+        const cells = row.cells;
+        const medicine = cells[0].textContent;
+        const frequency = cells[3].textContent.trim();
+        
+        // Format the time string to datetime-local format
+        // Note: This assumes the time string can be parsed by Date
+        // You might need to adjust this based on your actual time format
+        let timeString = cells[5].textContent.trim();
+        
+        // Set values in the modal form
+        document.getElementById('edit_reminder_id').value = reminderId;
+        document.getElementById('edit_medicine_name').value = medicine;
+        
+        // Try to set the frequency dropdown
+        const frequencySelect = document.getElementById('edit_frequency');
+        if (frequency.includes('Once') || frequency.includes('1 time')) {
+            frequencySelect.value = 'once';
+        } else if (frequency.includes('Twice') || frequency.includes('2 times')) {
+            frequencySelect.value = 'twice_daily';
+        } else if (frequency.includes('Thrice') || frequency.includes('3 times')) {
+            frequencySelect.value = 'thrice_daily';
+        } else if (frequency.includes('Daily') || frequency.includes('day')) {
+            frequencySelect.value = 'daily';
+        }
+        
+        // Set a default time (now) in case we can't parse the existing time
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('edit_reminder_time').value = now.toISOString().slice(0, 16);
+        
+        // Fetch the reminder details from the server to get accurate data
+        fetch(`{{ url_for('get_reminder_details', reminder_id='') }}${reminderId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Populate the form with accurate data from server
+                    const reminder = data.reminder;
+                    
+                    // Convert server timestamp to datetime-local format
+                    if (reminder.reminder_time) {
+                        const reminderTime = new Date(reminder.reminder_time);
+                        reminderTime.setMinutes(reminderTime.getMinutes() - reminderTime.getTimezoneOffset());
+                        document.getElementById('edit_reminder_time').value = reminderTime.toISOString().slice(0, 16);
+                    }
+                    
+                    if (reminder.frequency) {
+                        document.getElementById('edit_frequency').value = reminder.frequency;
+                    }
+                    
+                    if (reminder.duration) {
+                        document.getElementById('edit_duration').value = reminder.duration;
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching reminder details:', error);
+            });
+        
+        // Show the modal
+        editModal.show();
+    }
+    
+    function saveReminderChanges() {
+        const reminderId = document.getElementById('edit_reminder_id').value;
+        const reminderTime = document.getElementById('edit_reminder_time').value;
+        const frequency = document.getElementById('edit_frequency').value;
+        const duration = document.getElementById('edit_duration').value;
+        
+        // Validate input
+        if (!reminderTime) {
+            alert('Please select a reminder time.');
+            return;
+        }
+        
+        // Prepare data for server
+        const data = {
+            reminder_time: reminderTime,
+            frequency: frequency,
+            duration: duration
+        };
+        
+        // Send update to server
+        fetch(`{{ url_for('edit_reminder', reminder_id='') }}${reminderId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Update the UI
+                const row = document.getElementById(`reminder-row-${reminderId}`);
+                if (row) {
+                    // Format the time for display
+                    const displayTime = new Date(reminderTime).toLocaleString();
+                    
+                    // Update the time cell
+                    row.cells[5].textContent = displayTime;
+                    
+                    // Update the frequency cell
+                    let frequencyText;
+                    switch (frequency) {
+                        case 'once':
+                            frequencyText = 'Once';
+                            break;
+                        case 'daily':
+                            frequencyText = '1 time a day';
+                            break;
+                        case 'twice_daily':
+                            frequencyText = '2 times a day';
+                            break;
+                        case 'thrice_daily':
+                            frequencyText = '3 times a day';
+                            break;
+                        default:
+                            frequencyText = frequency;
+                    }
+                    row.cells[3].textContent = frequencyText;
+                    
+                    // Update the duration cell
+                    row.cells[4].textContent = `${duration} day${duration > 1 ? 's' : ''}`;
+                }
+                
+                // Hide the modal
+                editModal.hide();
+                
+                // Show success message
+                alert('Reminder updated successfully!');
+            } else {
+                alert('Failed to update reminder: ' + (data.error || 'Unknown error'));
+            }
+        })
+        .catch(error => {
+            console.error('Error updating reminder:', error);
+            alert('An error occurred while updating the reminder.');
+        });
+    }
+</script>
+{% endblock %}

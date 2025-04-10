@@ -1,0 +1,42 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Ciplox 500",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Pan d",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Cap Co-Immune",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Sumo cold",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup TusQ-x",
+            "dosage": "10ml",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Syrup Zedex",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        }
+    ]
+}

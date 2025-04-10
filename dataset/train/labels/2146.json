@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Cap Co-Immune",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Triz",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Dolonex dt",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Allegra",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Febrex plus",
+            "dosage": "5ml",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Syrup TusQ dx",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        }
+    ]
+}

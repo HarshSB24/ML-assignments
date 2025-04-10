@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Prescription History - Medicine Reminder{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col">
+        <h2>Prescription History</h2>
+        <p class="lead">View and manage your prescription records</p>
+    </div>
+</div>
+
+<div class="card shadow">
+    <div class="card-body">
+        {% if prescriptions %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Image</th>
+                            <th>Extracted Text</th>
+                            <th>Reminders</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for prescription in prescriptions %}
+                            <tr>
+                                <td>{{ prescription.upload_date|format_datetime }}</td>
+                                <td>
+                                    {% if prescription.filename %}
+                                        <img src="{{ url_for('static', filename='uploads/' + prescription.filename) }}" 
+                                             alt="Prescription" class="img-thumbnail" style="max-height: 100px;">
+                                    {% else %}
+                                        <span class="text-muted">No image</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-info" type="button" data-bs-toggle="collapse" 
+                                            data-bs-target="#text-{{ prescription.id }}" aria-expanded="false">
+                                        View text
+                                    </button>
+                                    <div class="collapse mt-2" id="text-{{ prescription.id }}">
+                                        <div class="card card-body bg-light">
+                                            <pre class="mb-0" style="white-space: pre-wrap;">{{ prescription.extracted_text }}</pre>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    {% set reminder_count = prescription.reminders|length %}
+                                    {% if reminder_count > 0 %}
+                                        <span class="badge bg-primary">{{ reminder_count }} reminder(s)</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">No reminders</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('view_prescription', prescription_id=prescription.id) }}" 
+                                       class="btn btn-primary btn-sm">
+                                        <i class="fas fa-eye me-1"></i>View
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                <p class="mb-0">No prescription records found. Upload a prescription from the dashboard.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Dolo 650",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Allegra",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Cap Dilantin",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Zedex",
+            "dosage": "5ml",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

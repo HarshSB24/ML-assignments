@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Cap Omez",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Febrex plus",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Cap Co-Immune",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Allegra",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Dolonex dt",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Febrex plus",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Syrup Grilinctus bm",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

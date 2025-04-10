@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Evion",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Cap Pan d",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Cap Zovirax",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Cetzine",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Combiflam",
+            "dosage": "10 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup TusQ-dx",
+            "dosage": "5ml",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Sumo cold",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Pan d",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Ciplox 500",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Febrex plus",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Grilinctus bm",
+            "dosage": "10ml",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        }
+    ]
+}

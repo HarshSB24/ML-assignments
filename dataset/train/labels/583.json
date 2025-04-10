@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Ciplox 500",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Febrex plus",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Cap Pan d",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Corex",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        }
+    ]
+}

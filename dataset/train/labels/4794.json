@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Cap Zovirax",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Dolonex dt",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Cap Omez",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Clavum 625",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Corex",
+            "dosage": "10ml",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

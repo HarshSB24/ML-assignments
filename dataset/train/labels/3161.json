@@ -1,0 +1,42 @@
+{
+    "medicines": [
+        {
+            "name": "Cap Dilantin",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Combiflam",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Evion",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Sumo cold",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Zedex",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        }
+    ]
+}

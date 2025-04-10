@@ -1,0 +1,42 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Dolo 650",
+            "dosage": "10 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Cap Pan d",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Neurobin Forte",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Ciplox 500",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup TusQ-dx",
+            "dosage": "10ml",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Syrup Brozedex",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

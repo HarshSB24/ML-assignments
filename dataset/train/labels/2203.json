@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Althrocin 500",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Zole f cream",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Allegra",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Dolonex dt",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Sumo cold",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Clavum 625",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Brozedex",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

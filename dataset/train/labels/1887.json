@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Dolonex dt",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Cap Co-Immune",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Triz",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Grilinctus bm",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

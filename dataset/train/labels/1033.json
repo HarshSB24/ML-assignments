@@ -1,0 +1,54 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Zole f cream",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Triz",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Pan d",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Cap Zovirax",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Cap Omez",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Corex",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Syrup Grilinctus bm",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        }
+    ]
+}

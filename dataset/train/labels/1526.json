@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Neurobin Forte",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Pan d",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Clavum 625",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Combiflam",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Febrex plus",
+            "dosage": "10ml",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        }
+    ]
+}

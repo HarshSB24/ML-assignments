@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Dolo 650",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Febrex plus",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Cap Cypon",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Cap Dilantin",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Cypon",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Syrup Brozedex",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        }
+    ]
+}

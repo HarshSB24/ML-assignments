@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Clavum 625",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Allegra",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Dolo 650",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Neurobin Forte",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Brozedex",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Clavum 625",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Cap Co-Immune",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Cap Cypon",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Cetzine",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Dolo 650",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Corex-dx",
+            "dosage": "10ml",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        }
+    ]
+}

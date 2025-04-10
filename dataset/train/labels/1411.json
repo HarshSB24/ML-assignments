@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Cetzine",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Dolo 650",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Dolonex dt",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Zedex",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

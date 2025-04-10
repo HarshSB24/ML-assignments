@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Cetzine",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Cap Dilantin",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Clavum 625",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Cap Omez",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Triz",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Corex-dx",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

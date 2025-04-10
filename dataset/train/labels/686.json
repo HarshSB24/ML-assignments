@@ -1,0 +1,54 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Dolo 650",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Dolonex dt",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Neurobin Forte",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Cap Omez",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Evion",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Corex",
+            "dosage": "10ml",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Syrup Febrex plus",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

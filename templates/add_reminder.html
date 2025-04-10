@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Add New Medication Reminder{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="mb-4">Add New Medication Reminder</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="medicine_name" class="form-label">Medicine Name</label>
+                        <input type="text" class="form-control" id="medicine_name" name="medicine_name" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="dosage" class="form-label">Dosage</label>
+                        <input type="text" class="form-control" id="dosage" name="dosage" placeholder="e.g. 500mg, 1 tablet" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="method" class="form-label">How to Take</label>
+                        <select class="form-select" id="method" name="method">
+                            <option value="after_food">After Food</option>
+                            <option value="before_food">Before Food</option>
+                            <option value="with_food">With Food</option>
+                            <option value="empty_stomach">On Empty Stomach</option>
+                            <option value="any_time">Any Time</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Reminder Times</label>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="morning" name="times" value="morning">
+                                    <label class="form-check-label" for="morning">Morning</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="afternoon" name="times" value="afternoon">
+                                    <label class="form-check-label" for="afternoon">Afternoon</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="evening" name="times" value="evening">
+                                    <label class="form-check-label" for="evening">Evening</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="night" name="times" value="night">
+                                    <label class="form-check-label" for="night">Night</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="start_date" class="form-label">Start Date</label>
+                        <input type="date" class="form-control" id="start_date" name="start_date" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="end_date" class="form-label">End Date (Optional)</label>
+                        <input type="date" class="form-control" id="end_date" name="end_date">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="notes" class="form-label">Notes (Optional)</label>
+                        <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Any special instructions or notes about this medication"></textarea>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('view_reminders') }}" class="btn btn-secondary me-md-2">
+                            <i class="fas fa-times"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Reminder
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <i class="fas fa-info-circle me-2"></i>Tips
+            </div>
+            <div class="card-body">
+                <ul class="mb-0">
+                    <li>Select all times of day when you need to take this medication</li>
+                    <li>Add detailed notes for any special instructions</li>
+                    <li>End date is optional for ongoing medications</li>
+                    <li>You can edit this reminder later if your prescription changes</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="card shadow-sm mt-4">
+            <div class="card-header bg-primary text-white">
+                <i class="fas fa-bell me-2"></i>Reminder Settings
+            </div>
+            <div class="card-body">
+                <p class="small">Default reminder times:</p>
+                <ul class="small mb-0">
+                    <li>Morning: 8:00 AM</li>
+                    <li>Afternoon: 1:00 PM</li>
+                    <li>Evening: 6:00 PM</li>
+                    <li>Night: 10:00 PM</li>
+                </ul>
+                <hr>
+                <p class="small mb-1">You can customize default times in <a href="{{ url_for('user_settings') }}">Settings</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Set default date to today
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('start_date').value = today;
+    });
+</script>
+{% endblock %}

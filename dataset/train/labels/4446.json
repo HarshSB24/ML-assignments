@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Cetzine",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Zole f cream",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Febrex plus",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Sumo cold",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Grilinctus bm",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Althrocin 500",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Evion",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Combiflam",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Cap Dilantin",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Clavum 625",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Brozedex",
+            "dosage": "5ml",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

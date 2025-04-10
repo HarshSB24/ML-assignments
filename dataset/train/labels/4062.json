@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Clavum 625",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Combiflam",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Cap Pan d",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Triz",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Brozedex",
+            "dosage": "10ml",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        }
+    ]
+}

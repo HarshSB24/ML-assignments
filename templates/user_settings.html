@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Add this to user_settings.html before the medication timings section -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h4>Profile Information</h4>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('update_profile') }}">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" 
+                           value="{{ current_user.username }}" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" 
+                           value="{{ current_user.email }}" required>
+                </div>
+            </div>
+            
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <h2>Medication Timing Settings</h2>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <h4>Default Medication Timings</h4>
+        </div>
+        <div class="card-body">
+            <p class="text-muted">
+                Set your preferred times for taking medication. These settings will be used for all new 
+                medication reminders.
+            </p>
+            
+            <form method="POST" action="{{ url_for('user_settings') }}">
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <h5>Once Daily Medication</h5>
+                        <div class="mb-3">
+                            <label for="once_daily_time" class="form-label">Preferred Time</label>
+                            <input type="time" class="form-control" id="once_daily_time" name="once_daily_time" 
+                                value="{{ user_prefs.once_daily_time }}" required>
+                            <div class="form-text">Default: 8:00 PM</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <h5>Twice Daily Medication</h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="twice_daily_time_1" class="form-label">Morning Time</label>
+                                <input type="time" class="form-control" id="twice_daily_time_1" name="twice_daily_time_1" 
+                                    value="{{ user_prefs.twice_daily_time_1 }}" required>
+                                <div class="form-text">Default: 8:00 AM</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="twice_daily_time_2" class="form-label">Evening Time</label>
+                                <input type="time" class="form-control" id="twice_daily_time_2" name="twice_daily_time_2" 
+                                    value="{{ user_prefs.twice_daily_time_2 }}" required>
+                                <div class="form-text">Default: 8:00 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <h5>Three Times Daily Medication</h5>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="thrice_daily_time_1" class="form-label">Morning Time</label>
+                                <input type="time" class="form-control" id="thrice_daily_time_1" name="thrice_daily_time_1" 
+                                    value="{{ user_prefs.thrice_daily_time_1 }}" required>
+                                <div class="form-text">Default: 8:00 AM</div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="thrice_daily_time_2" class="form-label">Afternoon Time</label>
+                                <input type="time" class="form-control" id="thrice_daily_time_2" name="thrice_daily_time_2" 
+                                    value="{{ user_prefs.thrice_daily_time_2 }}" required>
+                                <div class="form-text">Default: 2:00 PM</div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="thrice_daily_time_3" class="form-label">Evening Time</label>
+                                <input type="time" class="form-control" id="thrice_daily_time_3" name="thrice_daily_time_3" 
+                                    value="{{ user_prefs.thrice_daily_time_3 }}" required>
+                                <div class="form-text">Default: 8:00 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="yes" id="update_existing" name="update_existing">
+                        <label class="form-check-label" for="update_existing">
+                            Update existing upcoming reminders with these new timings
+                        </label>
+                        <div class="form-text">
+                            This will adjust the time (but not the date) of all your upcoming medication reminders
+                            to match your new preferred times.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Save Settings</button>
+                    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">Back to Dashboard</a>
+                    <a href="{{ url_for('view_reminders') }}" class="btn btn-secondary">View Updated Reminders</a>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

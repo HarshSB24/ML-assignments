@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Triz",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Cetzine",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Althrocin 500",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Cap Co-Immune",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Sumo cold",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Pan d",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Grilinctus bm",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        }
+    ]
+}

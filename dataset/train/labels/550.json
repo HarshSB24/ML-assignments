@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Neurobin Forte",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Zole f cream",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Cap Co-Immune",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Cypon",
+            "dosage": "5ml",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

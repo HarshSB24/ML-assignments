@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Febrex plus",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Neurobin Forte",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Althrocin 500",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Pan d",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Cap Cypon",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Brozedex",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Syrup Zedex",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        }
+    ]
+}

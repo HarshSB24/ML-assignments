@@ -1,0 +1,48 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Pan d",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Cetzine",
+            "dosage": "10 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Dolonex dt",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Sumo cold",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Cypon",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Syrup Brozedex",
+            "dosage": "10ml",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        }
+    ]
+}

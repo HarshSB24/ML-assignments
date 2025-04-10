@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Pan d",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Althrocin 500",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Allegra",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Corex",
+            "dosage": "10ml",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        }
+    ]
+}

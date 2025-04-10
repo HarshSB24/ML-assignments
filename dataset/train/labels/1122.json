@@ -1,0 +1,42 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Sumo cold",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Ciplox 500",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Cap Co-Immune",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "5 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Corex-dx",
+            "dosage": "5ml",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Reminder - Upload or Link Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+        .navbar {
+            background-color: #ffffff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-links a.active {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        input[type="file"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h3 {
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="/" class="logo">Medicine Reminder</a>
+        <div class="nav-links">
+            <a href="/" class="active">Home</a>
+            <a href="/reminders">Reminders</a>
+            <a href="/history">History</a>
+            <!-- <a href="/profile">Profile</a> -->
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+    
+    <h1>Upload or Provide an Image</h1>
+    
+    <!-- Form for Uploading or Linking an Image -->
+    <form id="imageForm" method="POST" enctype="multipart/form-data">
+        <label for="image_file">Upload an image:</label>
+        <input type="file" id="image_file" name="file">
+
+        <label for="image_url">Or provide an image URL:</label>
+        <input type="text" id="image_url" name="image_url" placeholder="Enter image URL">
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Result Section -->
+    <div id="result"></div>
+
+    <script>
+        // Handling form submission
+        document.getElementById('imageForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form from reloading the page
+
+            const formData = new FormData();
+            const fileInput = document.getElementById('image_file');
+            const urlInput = document.getElementById('image_url');
+
+            // If a file is selected, append it
+            if (fileInput.files.length > 0) {
+                formData.append("file", fileInput.files[0]);
+            } else if (urlInput.value) { // If there's an image URL, append it
+                formData.append("image_url", urlInput.value);
+            } else {
+                alert("Please upload an image or provide an image URL.");
+                return;
+            }
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Create a confirmation message at the top of the result
+                const confirmationMessage = `
+                    <div style="background-color: #dff0d8; color: #3c763d; padding: 15px; margin-bottom: 20px; border: 1px solid #d6e9c6; border-radius: 4px;">
+                        <strong>Success!</strong> Reminders have been generated and scheduled based on your prescription.
+                        <a href="/reminders" style="display: block; margin-top: 10px; color: #3c763d; text-decoration: underline;">View your reminders</a>
+                    </div>
+                `;
+                
+                document.getElementById('result').innerHTML = confirmationMessage + `
+                    <h3>Extracted Text:</h3>
+                    <pre>${data.extracted_text}</pre>
+                    <h3>Medicine Data:</h3>
+                    <pre>${JSON.stringify(data.extracted_medicine_data, null, 2)}</pre>
+                `;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = `
+                    <div style="background-color: #f2dede; color: #a94442; padding: 15px; margin-bottom: 20px; border: 1px solid #ebccd1; border-radius: 4px;">
+                        <strong>Error!</strong> There was a problem processing your prescription.
+                    </div>
+                `;
+            });
+        });
+
+        // Function to handle logout
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                fetch('/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/login';
+                    } else {
+                        alert('Logout failed. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Logout failed. Please try again.');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Evion",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "5 days"
+        },
+        {
+            "name": "Tab Zole f cream",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Clavum 625",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Cap Omez",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Allegra",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Combiflam",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup TusQ dx",
+            "dosage": "5ml",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Syrup Corex-dx",
+            "dosage": "5ml",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        }
+    ]
+}

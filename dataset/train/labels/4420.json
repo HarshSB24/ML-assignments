@@ -1,0 +1,54 @@
+{
+    "medicines": [
+        {
+            "name": "Cap Dilantin",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Althrocin 500",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Cap Co-Immune",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Febrex plus",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Febrex plus",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Syrup Zedex",
+            "dosage": "5ml",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Cyclomeff",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Febrex plus",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Althrocin 500",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Tab Dolonex dt",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Febrex plus",
+            "dosage": "10ml",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        }
+    ]
+}

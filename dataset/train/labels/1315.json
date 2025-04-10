@@ -1,0 +1,42 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Cyclopam",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Althrocin 500",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Cap Co-Immune",
+            "dosage": "5 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Neurobin Forte",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Cap Cypon",
+            "dosage": "10 tablets",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup TusQ-dx",
+            "dosage": "5ml",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        }
+    ]
+}

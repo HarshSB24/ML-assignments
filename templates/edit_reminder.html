@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Edit Reminder</h2>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('edit_reminder', reminder_id=reminder.id) }}" id="editReminderForm">
+        {% if form %} {{ form.hidden_tag() }} {% endif %}  <!-- CSRF Token -->
+
+        <div class="mb-3">
+            <label for="medicine_name" class="form-label">Medicine Name</label>
+            <input type="text" class="form-control" id="medicine_name" name="medicine_name" 
+                   value="{{ reminder.medicine or '' }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="dosage" class="form-label">Dosage</label>
+            <input type="text" class="form-control" id="dosage" name="dosage" value="{{ reminder.dosage or '' }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="method" class="form-label">Method</label>
+            <select class="form-select" id="method" name="method">
+                <option value="Before Food" {% if reminder.method == 'Before Food' %}selected{% endif %}>Before Food</option>
+                <option value="After Food" {% if reminder.method == 'After Food' %}selected{% endif %}>After Food</option>
+                <option value="With Food" {% if reminder.method == 'With Food' %}selected{% endif %}>With Food</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="reminder_time" class="form-label">Reminder Time</label>
+            <input type="datetime-local" class="form-control" id="reminder_time" name="reminder_time" 
+                   value="{{ reminder.reminder_time.strftime('%Y-%m-%dT%H:%M') if reminder.reminder_time else '' }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Reminder</button>
+        <a href="{{ url_for('view_reminders') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<script>
+    document.getElementById("editReminderForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        saveReminderChanges("{{ reminder.id }}");
+    });
+ 
+    async function saveReminderChanges(reminderId) {
+     let requestData = {
+         medicine_name: document.getElementById("medicine_name").value,
+         dosage: document.getElementById("dosage").value,
+         method: document.getElementById("method").value,
+         reminder_time: document.getElementById("reminder_time").value
+     };
+ 
+     try {
+         let response = await fetch(`/edit_reminder/${reminderId}`, {
+             method: "POST",
+             headers: {
+                 "Content-Type": "application/json"
+             },
+             body: JSON.stringify(requestData)
+         });
+ 
+         let result = await response.json();
+         console.log("Server Response:", result);
+         if (response.ok) {
+             alert("Reminder updated successfully!");
+             window.location.href = "{{ url_for('view_reminders') }}";
+         } else {
+             alert("Error: " + result.error);
+         }
+     } catch (error) {
+         console.error("Error updating reminder:", error);
+         alert("An unexpected error occurred.");
+     }
+ }
+ </script>
+{% endblock %}

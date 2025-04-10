@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Tab Dolonex dt",
+            "dosage": "20 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Cap Zovirax",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Combiflam",
+            "dosage": "15 tablets",
+            "frequency": "3 times a day",
+            "duration": "30 days"
+        },
+        {
+            "name": "Tab Ciplox 500",
+            "dosage": "5 tablets",
+            "frequency": "3 times a day",
+            "duration": "7 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Cypon",
+            "dosage": "5ml",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        }
+    ]
+}

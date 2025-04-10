@@ -1,0 +1,36 @@
+{
+    "medicines": [
+        {
+            "name": "Cap Omez",
+            "dosage": "20 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        },
+        {
+            "name": "Tab Allegra",
+            "dosage": "10 tablets",
+            "frequency": "2 times a day",
+            "duration": "7 days"
+        },
+        {
+            "name": "Tab Febrex plus",
+            "dosage": "10 tablets",
+            "frequency": "3 times a day",
+            "duration": "14 days"
+        },
+        {
+            "name": "Cap Pan d",
+            "dosage": "15 tablets",
+            "frequency": "2 times a day",
+            "duration": "10 days"
+        }
+    ],
+    "syrups": [
+        {
+            "name": "Syrup Cypon",
+            "dosage": "5ml",
+            "frequency": "2 times a day",
+            "duration": "14 days"
+        }
+    ]
+}
