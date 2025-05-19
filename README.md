@@ -1,6 +1,6 @@
-# VAMD - Visual Analysis of Medical Documents
+# VEMR - Voice Enabled Medicine Reminder
 
-VAMD is a prescription processing system that uses computer vision, OCR, NLP, and deep learning to extract medicine information from prescription images and generate reminders.
+VERM is a prescription processing system that uses computer vision, OCR, NLP, and deep learning to extract medicine information from prescription images and generate reminders.
 
 ## Features
 
@@ -15,7 +15,7 @@ VAMD is a prescription processing system that uses computer vision, OCR, NLP, an
 
 1. Clone the repository:
 ```
-git clone https://github.com/yourusername/VAMD.git
+git clone https://github.com/HarshSB24/ML-assignments.git
 cd VAMD
 ```
 
